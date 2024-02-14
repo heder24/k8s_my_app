@@ -6,7 +6,7 @@ resource "kubernetes_namespace" "knote_app" {
 
 resource "helm_release" "knote" {
   name             = "knote"
-  repository       = "/knote"
+  repository       = "./knote"
   chart            = "knote"
   namespace        = "knote-app"
 }
