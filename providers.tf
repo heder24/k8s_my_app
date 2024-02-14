@@ -3,7 +3,7 @@ terraform {
     organization = "heder24"
 
     workspaces {
-     name = "kNNCTe-app-wkspace"
+     name = "kNNDTe-app-wkspace"
     }
   }
 }
@@ -130,9 +130,9 @@ provider "aws" {
 #     }
 #   }
 # }
-provider "kubernetes" {
-  config_path    = "~.kube/config"
-}
+# provider "kubernetes" {
+#   config_path    = "~.kube/config"
+# }
 
 provider "helm" {
   kubernetes {
