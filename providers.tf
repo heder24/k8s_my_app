@@ -131,7 +131,7 @@ provider "aws" {
 #   }
 # }
 provider "kubernetes" {
-  config_path    = "~/.kube/config"
+  config_path    = "/home/tfc-agent/.kube/config"
 }
 
 provider "helm" {
@@ -139,3 +139,4 @@ provider "helm" {
     config_path = "~/.kube/config"
   }
 }
+
