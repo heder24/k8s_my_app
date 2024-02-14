@@ -66,24 +66,24 @@ provider "aws" {
 
 # }
 
-# data "aws_region" "current" {}
+data "aws_region" "current" {}
 
 
-# output "eks_cluster_name" {
-#   value = module.aws_eks_cluster.prod.name
-# }
+output "eks_cluster_name" {
+  value = module.aws_eks_cluster.prod.name
+}
 
-# output "eks_cluster_endpoint" {
-#   value = module.aws_eks_cluster.prod.endpoint
-# }
+output "eks_cluster_endpoint" {
+  value = module.aws_eks_cluster.prod.endpoint
+}
 
-# output "eks_cluster_certificate_authority_data" {
-#   value = module.aws_eks_cluster.prod.certificate_authority[0].data
-# }
+output "eks_cluster_certificate_authority_data" {
+  value = module.aws_eks_cluster.prod.certificate_authority[0].data
+}
 
-# output "eks_cluster_arn" {
-#   value = module.aws_eks_cluster.prod.arn
-# }
+output "eks_cluster_arn" {
+  value = module.aws_eks_cluster.prod.arn
+}
 
 
 # provider "kubernetes" {
