@@ -17,12 +17,10 @@ terraform {
     kubernetes = {
       source  = "hashicorp/kubernetes"
       version = "2.24.0"
-      config_path = "~/.kube/config"
     }
     helm = {
       source  = "hashicorp/helm"
       version = "2.11.0"
-      config_path = "~/.kube/config"
     }
     grafana = {
       source = "grafana/grafana"
@@ -127,25 +125,22 @@ data "aws_eks_cluster_auth" "cluster" {
 }
 
 provider "kubernetes" {
-  config_path = "~/.kube/config"
   host                   = data.aws_eks_cluster.cluster.endpoint
   cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
   exec {
     api_version = "client.authentication.k8s.io/v1beta1"
-    args        = ["eks", "get-token", "--cluster-name", data.aws_eks_cluster.cluster.name]
+    args        = ["eks", "get-token", "--cluster-name", load_config_file==false,data.aws_eks_cluster.cluster.name]
     command     = "aws"
-    
   }
   
 }
 provider "helm" {
   kubernetes {
-    config_path = "~/.kube/config"
     host                   = data.aws_eks_cluster.cluster.endpoint
     cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
     exec {
       api_version = "client.authentication.k8s.io/v1beta1"
-      args        = ["eks", "get-token", "--cluster-name", data.aws_eks_cluster.cluster.name]
+      args        = ["eks", "get-token", "--cluster-name",load_config_file==false, data.aws_eks_cluster.cluster.name]
       command     = "aws"
     }
   }
