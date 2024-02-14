@@ -109,7 +109,7 @@ data "terraform_remote_state" "eks" {
     organization = "heder24"
 
     workspaces = {
-      name = "kNkoTe-wkspace"
+      name = "kNtzzzTe-wkspace"
     }
   }
 }
