@@ -104,17 +104,17 @@ provider "aws" {
 # }
 
 
-data "terraform_remote_state" "eks" {
-  backend = "remote"
+# data "terraform_remote_state" "eks" {
+#   backend = "remote"
 
-  config = {
-    organization = "heder24"
+#   config = {
+#     organization = "heder24"
 
-    workspaces = {
-      name = "kNtzzzTe-wkspace"
-    }
-  }
-}
+#     workspaces = {
+#       name = "kNtzzzTe-wkspace"
+#     }
+#   }
+# }
 
 data "aws_caller_identity" "current" {}
 # Retrieve EKS cluster configuration
