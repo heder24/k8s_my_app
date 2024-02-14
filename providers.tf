@@ -3,7 +3,7 @@ terraform {
     organization = "heder24"
 
     workspaces {
-      name = "knbte-app-wkspace"
+     name = "kNaTe-app-wkspace"
     }
   }
 }
@@ -17,10 +17,12 @@ terraform {
     kubernetes = {
       source  = "hashicorp/kubernetes"
       version = "2.24.0"
+     
     }
     helm = {
       source  = "hashicorp/helm"
       version = "2.11.0"
+    
     }
     grafana = {
       source = "grafana/grafana"
@@ -129,9 +131,9 @@ provider "kubernetes" {
   cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
   exec {
     api_version = "client.authentication.k8s.io/v1beta1"
-    args        = ["eks", "get-token", "--cluster-name",data.aws_eks_cluster.cluster.name]
+    args        = ["eks", "get-token", "--cluster-name", data.aws_eks_cluster.cluster.name]
     command     = "aws"
-  
+    
   }
   
 }
