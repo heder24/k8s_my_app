@@ -66,24 +66,24 @@ provider "aws" {
 
 # }
 
-data "aws_region" "current" {}
+# data "aws_region" "current" {}
 
 
-output "eks_cluster_name" {
-  value = data.aws_eks_cluster.prod.name
-}
+# output "eks_cluster_name" {
+#   value = data.aws_eks_cluster.prod.name
+# }
 
-output "eks_cluster_endpoint" {
-  value = data.aws_eks_cluster.prod.endpoint
-}
+# output "eks_cluster_endpoint" {
+#   value = data.aws_eks_cluster.prod.endpoint
+# }
 
-output "eks_cluster_certificate_authority_data" {
-  value = data.aws_eks_cluster.prod.certificate_authority[0].data
-}
+# output "eks_cluster_certificate_authority_data" {
+#   value = data.aws_eks_cluster.prod.certificate_authority[0].data
+# }
 
-output "eks_cluster_arn" {
-  value = data.aws_eks_cluster.prod.arn
-}
+# output "eks_cluster_arn" {
+#   value = data.aws_eks_cluster.prod.arn
+# }
 
 
 # provider "kubernetes" {
@@ -104,47 +104,38 @@ output "eks_cluster_arn" {
 # }
 
 
-# data "terraform_remote_state" "eks" {
-#   backend = "remote"
+# }
 
-#   config = {
-#     organization = "heder24"
+# data "aws_caller_identity" "current" {}
 
-#     workspaces = {
-#       name = "kNtzzzTe-wkspace"
+# provider "kubernetes" {
+#   host                   = data.aws_eks_cluster.cluster.endpoint
+#   cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
+#   exec {
+#     api_version = "client.authentication.k8s.io/v1beta1"
+#     args        = ["eks", "get-token", "--cluster-name", data.aws_eks_cluster.cluster.name]
+#     command     = "aws"
+    
+#   }
+  
+# }
+# provider "helm" {
+#   kubernetes {
+#     host                   = data.aws_eks_cluster.cluster.endpoint
+#     cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
+#     exec {
+#       api_version = "client.authentication.k8s.io/v1beta1"
+#       args        = ["eks", "get-token", "--cluster-name", data.aws_eks_cluster.cluster.name]
+#       command     = "aws"
 #     }
 #   }
 # }
-
-data "aws_caller_identity" "current" {}
-# Retrieve EKS cluster configuration
-# data "aws_eks_cluster" "cluster" {
-#   name = data.terraform_remote_state.eks.outputs.cluster_name
-# }
-
-# data "aws_eks_cluster_auth" "cluster" {
-#   name = data.terraform_remote_state.eks.outputs.cluster_name
-# }
-
 provider "kubernetes" {
-  host                   = data.aws_eks_cluster.cluster.endpoint
-  cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
-  exec {
-    api_version = "client.authentication.k8s.io/v1beta1"
-    args        = ["eks", "get-token", "--cluster-name", data.aws_eks_cluster.cluster.name]
-    command     = "aws"
-    
-  }
-  
+  config_path    = "~/.kube/config"
 }
+
 provider "helm" {
   kubernetes {
-    host                   = data.aws_eks_cluster.cluster.endpoint
-    cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
-    exec {
-      api_version = "client.authentication.k8s.io/v1beta1"
-      args        = ["eks", "get-token", "--cluster-name", data.aws_eks_cluster.cluster.name]
-      command     = "aws"
-    }
+    config_path = "~/.kube/config"
   }
 }
