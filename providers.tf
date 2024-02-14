@@ -3,7 +3,7 @@ terraform {
     organization = "heder24"
 
     workspaces {
-     name = "kNNATe-app-wkspace"
+     name = "kNNBTe-app-wkspace"
     }
   }
 }
@@ -70,19 +70,19 @@ data "aws_region" "current" {}
 
 
 output "eks_cluster_name" {
-  value = module.aws_eks_cluster.prod.name
+  value = data.aws_eks_cluster.prod.name
 }
 
 output "eks_cluster_endpoint" {
-  value = module.aws_eks_cluster.prod.endpoint
+  value = data.aws_eks_cluster.prod.endpoint
 }
 
 output "eks_cluster_certificate_authority_data" {
-  value = module.aws_eks_cluster.prod.certificate_authority[0].data
+  value = data.aws_eks_cluster.prod.certificate_authority[0].data
 }
 
 output "eks_cluster_arn" {
-  value = module.aws_eks_cluster.prod.arn
+  value = data.aws_eks_cluster.prod.arn
 }
 
 
