@@ -3,7 +3,7 @@ terraform {
     organization = "heder24"
 
     workspaces {
-     name = "kNNHTe-app-wkspace"
+     name = "kNNITe-app-wkspace"
     }
   }
 }
@@ -89,6 +89,7 @@ output "eks_cluster_arn" {
 }
 output "aws_eks_cluster_auth" {
   value =data.aws_eks_cluster_auth.prod.token
+  sensitive = true
 }
 data "aws_eks_cluster_auth" "prod" {
   name = "prod"
