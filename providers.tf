@@ -3,7 +3,7 @@ terraform {
     organization = "heder24"
 
     workspaces {
-     name = "kNNDTe-app-wkspace"
+     name = "kNNETe-app-wkspace"
     }
   }
 }
@@ -66,45 +66,43 @@ provider "aws" {
 
 # }
 
-# data "aws_region" "current" {}
+data "aws_region" "current" {}
 
 
-# output "eks_cluster_name" {
-#   value = data.aws_eks_cluster.prod.name
-# }
+output "eks_cluster_name" {
+  value = data.aws_eks_cluster.prod.name
+}
 
-# output "eks_cluster_endpoint" {
-#   value = data.aws_eks_cluster.prod.endpoint
-# }
+output "eks_cluster_endpoint" {
+  value = data.aws_eks_cluster.prod.endpoint
+}
 
-# output "eks_cluster_certificate_authority_data" {
-#   value = data.aws_eks_cluster.prod.certificate_authority[0].data
-# }
+output "eks_cluster_certificate_authority_data" {
+  value = data.aws_eks_cluster.prod.certificate_authority[0].data
+}
 
-# output "eks_cluster_arn" {
-#   value = data.aws_eks_cluster.prod.arn
-# }
+output "eks_cluster_arn" {
+  value = data.aws_eks_cluster.prod.arn
+}
+
+provider "kubernetes" {
+  experiments {
+    manifest_resource = true
+  }
+  host                   = data.aws_eks_cluster.prod.endpoint
+  cluster_ca_certificate = base64decode(data.aws_eks_cluster.prod.certificate_authority[0].data)
+  token                  = data.aws_eks_cluster_auth.prod.token
+}
+
+provider "helm" {
+  kubernetes {
+    host                   = data.aws_eks_cluster.prod.endpoint
+    token                  = data.aws_eks_cluster_auth.prod.token
+    cluster_ca_certificate = base64decode(data.aws_eks_cluster.prod.certificate_authority[0].data)
+  }
+}
 
 
-# provider "kubernetes" {
-#   experiments {
-#     manifest_resource = true
-#   }
-#   host                   = data.aws_eks_cluster.cluster.endpoint
-#   cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
-#   token                  = data.aws_eks_cluster_auth.cluster.token
-# }
-
-# provider "helm" {
-#   kubernetes {
-#     host                   = data.aws_eks_cluster.cluster.endpoint
-#     token                  = data.aws_eks_cluster_auth.cluster.token
-#     cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
-#   }
-# }
-
-
-# }
 
 # data "aws_caller_identity" "current" {}
 
@@ -130,13 +128,13 @@ provider "aws" {
 #     }
 #   }
 # }
-provider "kubernetes" {
-  config_path = "/home/tfc-agent/.tfc-agent/component/terraform/runs/run-4Lq6HqE7NJYupZr2/.kube/config"
-}
+# provider "kubernetes" {
+#   config_path ="~/.kube/config"
+#   }
 
-provider "helm" {
-  kubernetes {
-    config_path = "~/.kube/config"
-  }
-}
+# provider "helm" {
+#   kubernetes {
+#     config_path = "~/.kube/config"
+#   }
+# }
 
