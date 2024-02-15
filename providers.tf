@@ -87,7 +87,12 @@ output "eks_cluster_certificate_authority_data" {
 output "eks_cluster_arn" {
   value = data.aws_eks_cluster.prod.arn
 }
-
+output "aws_eks_cluster_auth" {
+  value =data.aws_eks_cluster_auth.prod.token
+}
+# data "aws_eks_cluster_auth" "prod" {
+#   name = "prod"
+# }
 provider "kubernetes" {
   experiments {
     manifest_resource = true
