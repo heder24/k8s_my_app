@@ -3,7 +3,7 @@ terraform {
     organization = "heder24"
 
     workspaces {
-     name = "kNNFTe-app-wkspace"
+     name = "kNNGTe-app-wkspace"
     }
   }
 }
@@ -68,7 +68,7 @@ provider "aws" {
 
 data "aws_region" "current" {}
 
-data "aws_eks_cluster" "example" {
+data "aws_eks_cluster" "prod" {
   name = "prod"
 }
 
