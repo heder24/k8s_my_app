@@ -131,7 +131,7 @@ provider "aws" {
 #   }
 # }
 provider "kubernetes" {
-  config_path    = "~.kube/config"
+  config_path = "/home/tfc-agent/.tfc-agent/component/terraform/runs/run-4Lq6HqE7NJYupZr2/.kube/config"
 }
 
 provider "helm" {
