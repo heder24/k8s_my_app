@@ -3,8 +3,8 @@ kind: Service
 metadata:
   name: knote
   namespace: knote-app
-  annotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::312029113425:role/knote
+  # annotations:
+  #   eks.amazonaws.com/role-arn: arn:aws:iam::312029113425:role/knote
 
 spec:
   selector:
