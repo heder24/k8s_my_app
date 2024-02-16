@@ -29,7 +29,7 @@ spec:
       labels:
         app: knote
     spec:
-      serviceAccountName: knote
+      serviceAccountName: csi-store-driver-sa
       containers:
         - name: knote
           image: heder24/my-app:knote
