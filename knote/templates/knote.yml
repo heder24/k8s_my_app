@@ -30,6 +30,13 @@ spec:
         app: knote
     spec:
       serviceAccountName: csi-store-driver-sa
+      volumes:
+      - name: secrets-store-inline
+        csi:
+          driver: secrets-store.csi.k8s.io
+          readOnly: true
+          volumeAttributes:
+            secretProviderClass: "aws-secret-credentials"
       containers:
         - name: knote
           image: heder24/my-app:knote
@@ -49,10 +56,10 @@ spec:
             - name: MINIO_HOST
               value: minio
           imagePullPolicy: Always
-      volumes:
-      - name: secrets-store-inline
-        csi:
-          driver: secrets-store.csi.k8s.io
-          readOnly: true
-          volumeAttributes:
-            secretProviderClass: "aws-secret-credentials"
+      # volumes:
+      # - name: secrets-store-inline
+      #   csi:
+      #     driver: secrets-store.csi.k8s.io
+      #     readOnly: true
+      #     volumeAttributes:
+      #       secretProviderClass: "aws-secret-credentials"
