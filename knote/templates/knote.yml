@@ -33,11 +33,6 @@ spec:
           ports:
             - containerPort: 3000
           env:
-          #   - name: Docker_ENV
-          #     valueFrom:
-          #       secretKeyRef:
-          #         name: regcred
-          #         key: .dockerconfigjson
             - name: MONGO_URL
               value: mongodb://mongo:27017/dev
             - name: MINIO_ACCESS_KEY
