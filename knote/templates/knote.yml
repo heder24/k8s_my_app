@@ -47,5 +47,5 @@ spec:
             - name: MINIO_HOST
               value: minio
           imagePullPolicy: Always
-      imagePullSecrets:
-        - name: regcred
+      # imagePullSecrets:
+      #   - name: regcred
