@@ -28,6 +28,7 @@ spec:
     metadata:
       labels:
         app: knote
+    spec:
       # serviceAccountName: csi-store-driver-sa
       # volumes:
       # - name: secrets-store-inline
