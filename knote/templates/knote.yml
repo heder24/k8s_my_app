@@ -35,9 +35,9 @@ spec:
           env:
             - name: MONGO_URL
               value: mongodb://mongo:27017/dev
-            - name: MINIO_ACCESS_KEY
+            - name: MINIO_ROOT_USER
               value: mykey
-            - name: MINIO_SECRET_KEY
+            - name: MINIO_ROOT_PASSWORD
               value: mysecret
             - name: MINIO_HOST
               value: minio
