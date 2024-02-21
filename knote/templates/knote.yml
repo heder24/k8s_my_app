@@ -32,7 +32,7 @@ spec:
           image: heder24/my-app:knote
           ports:
             - containerPort: 3000
-          # env:
+          env:
           #   - name: Docker_ENV
           #     valueFrom:
           #       secretKeyRef:
