@@ -159,7 +159,7 @@ jobs:
       run: terraform apply -auto-approve -input=true
     - name: Terraform Destroy
       env:
-        destroy: false #WafARN
+        destroy: true #WafARN
 
       if: ${{ env.destroy == 'true' }} 
       #if: github.ref =true= 'refs/heads/"main"' && github.event_name == 'push'
