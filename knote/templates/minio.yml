@@ -1,8 +1,8 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: minio-pvc
   namespace: knote-app
+  name: minio-pvc
 spec:
   accessModes:
     - ReadWriteOnce
@@ -13,8 +13,8 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: minio
   namespace: knote-app
+  name: minio
 spec:
   selector:
     app: minio
@@ -25,8 +25,8 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: minio
   namespace: knote-app
+  name: minio
 spec:
   selector:
     matchLabels:
@@ -38,14 +38,14 @@ spec:
     spec:
       containers:
         - name: minio
-          image: minio/minio:latest  #RELEASE.2022-10-29T06-21-33Z
+          image: minio/minio:RELEASE.2022-10-29T06-21-33Z
           args:
             - server
             - /storage
           env:
-            - name: MINIO_ROOT_USER
+            - name: MINIO_ACCESS_KEY
               value: mykey
-            - name: MINIO_ROOT_PASSWORD
+            - name: MINIO_SECRET_KEY
               value: mysecret
           ports:
             - containerPort: 9000
